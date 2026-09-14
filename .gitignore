@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# MLflow local (los runs oficiales van a DagsHub)
+mlruns/
+mlflow.db
