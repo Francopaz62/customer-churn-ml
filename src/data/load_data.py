@@ -8,7 +8,6 @@ def load_historical_data():
     project_root = Path(__file__).resolve().parents[2]
     csv_path = project_root / "data" / "raw" / "customer_churn_historical.csv"
     data = pd.read_csv(csv_path)
-    data["TotalCharges"] = data["TotalCharges"].fillna(0)
     return data
 
 def split_features_target(data):
