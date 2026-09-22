@@ -1,3 +1,4 @@
+import dagshub
 import mlflow
 import mlflow.sklearn
 
@@ -20,6 +21,8 @@ from src.features.preprocess import build_preprocessor
 
 
 def main():
+    dagshub.init(repo_owner='Francopaz62', repo_name='customer-churn-ml', mlflow=True)
+
     datos = load_historical_data()
     predictores, objetivo = split_features_target(datos)
 
@@ -60,8 +63,6 @@ def main():
             random_state=42,
         ),
     }
-
-    mlflow.set_experiment("customer-churn")
 
     for nombre, clasificador in candidatos.items():
         modelo = Pipeline(

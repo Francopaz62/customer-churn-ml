@@ -1,3 +1,4 @@
+import dagshub
 import mlflow
 
 from sklearn.linear_model import LogisticRegression
@@ -10,6 +11,8 @@ from src.features.preprocess import build_preprocessor
 
 
 def main():
+    dagshub.init(repo_owner='Francopaz62', repo_name='customer-churn-ml', mlflow=True)
+
     data = load_historical_data()
     X, y = split_features_target(data)
 
@@ -37,7 +40,6 @@ def main():
     print(f"Clientes usados para entrenar: {len(X_train)}")
     print(f"Clientes reservados para evaluar: {len(X_test)}")
 
-    mlflow.set_experiment("customer-churn")
     with mlflow.start_run(run_name="logistic-regression-baseline"):
         mlflow.log_param("model", "LogisticRegression")
         mlflow.log_param("test_size", 0.2)
