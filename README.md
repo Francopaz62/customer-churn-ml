@@ -13,6 +13,18 @@ Entrega 1 en desarrollo: EDA completo, pipeline de preprocesamiento y comparaci�
 
 ## Reproducir el modelo inicial
 
+El acceso al proyecto en DagsHub requiere ser colaborador invitado: no alcanza con que el repositorio esté marcado como público, hay que pedir acceso al owner en https://dagshub.com/Francopaz62/customer-churn-ml.
+
+Una vez con acceso, configurar las credenciales localmente (no se suben a Git, viven en `.dvc/config.local`, que está en `.gitignore`):
+
+```powershell
+.\.venv\Scripts\dvc.exe remote modify origin --local auth basic
+.\.venv\Scripts\dvc.exe remote modify origin --local user <tu_usuario_de_DagsHub>
+.\.venv\Scripts\dvc.exe remote modify origin --local password <tu_token_de_DagsHub>
+```
+
+El token se genera en DagsHub: perfil → Settings → Tokens → Generate New Token.
+
 Desde la carpeta principal del proyecto, en PowerShell:
 
 ```powershell
