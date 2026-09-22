@@ -47,7 +47,7 @@ Se separó un 20 % de los datos como conjunto de prueba. Con el 80 % restante se
 | Regresión logística con clases balanceadas | 0,495 | 0,774 | 0,604 | 0,821 |
 | Bosque aleatorio con profundidad limitada | 0,670 | 0,377 | 0,483 | 0,810 |
 
-Se eligió como candidato la **regresión logística con clases balanceadas**, registrada en MLflow como `modelo_abandono_clientes`, versión 1. Su ejecución de origen es `logistica_clases_balanceadas` (Run ID `33ead5be491b4d79a99f8bafb3d80bfd`, commit `38526c5`).
+Se eligió como candidato la **regresión logística con clases balanceadas**, registrada en MLflow como `modelo_abandono_clientes`, versión 1. Su ejecución de origen es `logistica_clases_balanceadas` (Run ID `01744985dee54171858142d2627bd893`, commit `19d588e`).
 
 En validación detectó 287 de los 371 clientes que abandonaron y dejó 84 sin detectar. La regresión logística inicial detectó 177 y dejó 194 sin detectar. Elegir el modelo balanceado permite identificar más posibles abandonos, pero también aumenta las falsas alarmas de 95 a 293. La elección supone que contactar a un cliente que finalmente permanece tiene un costo menor que no detectar a uno que abandona. Esa prioridad de negocio debe confirmarse antes de usar el modelo en una campaña real.
 
