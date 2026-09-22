@@ -24,13 +24,11 @@ python -m venv .venv
 
 `dvc pull` recupera el conjunto de datos histórico desde el remoto configurado; requiere acceso a ese remoto. El entrenamiento usa una división estratificada de 80 % para entrenar y 20 % para evaluar, con `random_state=42`.
 
-Para ver las ejecuciones registradas localmente en MLflow:
+Las ejecuciones se registran en DagsHub (no localmente). Para verlas, abrir:
 
-```powershell
-.\.venv\Scripts\mlflow.exe server --port 5000
-```
+https://dagshub.com/Francopaz62/customer-churn-ml/experiments
 
-Luego abrir http://localhost:5000 y seleccionar **Model training → customer-churn → Runs**. El modelo inicial obtuvo ROC-AUC de 0,812 y recall de 0,446 para la clase `Yes`.
+El modelo inicial obtuvo ROC-AUC de 0,812 y recall de 0,446 para la clase `Yes`.
 
 ## Comparación y selección del modelo
 
