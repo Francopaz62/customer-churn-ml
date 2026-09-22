@@ -8,30 +8,40 @@ datos con DVC, tracking de experimentos con MLflow, y despliegue como servicio R
 con FastAPI (etapas siguientes).
 
 ## Estado actual
-Entrega 1 en desarrollo: EDA completo, pipeline de preprocesamiento y comparación de
+Entrega 1 en finalizada: EDA completo, pipeline de preprocesamiento y comparación de
 6 modelos (baseline, lineal, árboles) registrados con MLflow.
 
 ## Reproducir el modelo inicial
 
-El acceso al proyecto en DagsHub requiere ser colaborador invitado: no alcanza con que el repositorio esté marcado como público, hay que pedir acceso al owner en https://dagshub.com/Francopaz62/customer-churn-ml.
+Desde la carpeta principal del proyecto, crear un entorno virtual e instalar
+las dependencias:
 
-Una vez con acceso, configurar las credenciales localmente (no se suben a Git, viven en `.dvc/config.local`, que está en `.gitignore`):
+    python -m venv .venv
+    .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-```powershell
-.\.venv\Scripts\dvc.exe remote modify origin --local auth basic
-.\.venv\Scripts\dvc.exe remote modify origin --local user <tu_usuario_de_DagsHub>
-.\.venv\Scripts\dvc.exe remote modify origin --local password <tu_token_de_DagsHub>
-```
+El acceso al proyecto en DagsHub requiere ser colaborador invitado. No alcanza
+con que el repositorio esté marcado como público; se debe solicitar acceso al
+propietario en:
 
-El token se genera en DagsHub: perfil → Settings → Tokens → Generate New Token.
+https://dagshub.com/Francopaz62/customer-churn-ml
 
-Desde la carpeta principal del proyecto, en PowerShell:
+Una vez obtenido el acceso, configurar las credenciales de DVC localmente.
+Estas credenciales se guardan en `.dvc/config.local`, archivo excluido de Git:
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\dvc.exe pull
-.\.venv\Scripts\python.exe -m src.training.train
+    .\.venv\Scripts\dvc.exe remote modify origin --local auth basic
+    .\.venv\Scripts\dvc.exe remote modify origin --local user <tu_usuario_de_DagsHub>
+    .\.venv\Scripts\dvc.exe remote modify origin --local password <tu_token_de_DagsHub>
+
+El token se genera en DagsHub desde:
+
+`Perfil → Settings → Tokens → Generate New Token`
+
+No se debe guardar ni publicar el token en Git.
+
+Finalmente, recuperar el dataset y ejecutar el entrenamiento:
+
+    .\.venv\Scripts\dvc.exe pull
+    .\.venv\Scripts\python.exe -m src.training.train
 ```
 
 `dvc pull` recupera el conjunto de datos histórico desde el remoto configurado; requiere acceso a ese remoto. El entrenamiento usa una división estratificada de 80 % para entrenar y 20 % para evaluar, con `random_state=42`.
